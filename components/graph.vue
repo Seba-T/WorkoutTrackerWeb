@@ -1,6 +1,10 @@
 <template>
   <div v-if="pending">I'm loading</div>
-  <div v-else>
+  <div v-else class="main">
+    <el-button type="success" plain @click="toggleDark()"
+      >Change the color dear</el-button
+    >
+
     <v-chart
       v-for="option in options"
       :key="option.key"
@@ -10,13 +14,27 @@
   </div>
 </template>
 <script setup lang="ts">
-import VChart from "vue-echarts";
+import { useDark, useToggle } from "@vueuse/core";
 
-const { options, pending } = await useAllExercisePerformance("current User");
+import VChart from "vue-echarts";
+import { ElButton } from "element-plus";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+
+const { options, pending } = await useAllExercisePerformance(
+  "current User",
+  isDark.value
+);
 </script>
 <style scoped>
 .chart {
   height: 100vh;
+}
+
+.main {
+  display: inline
+
 }
 </style>
 

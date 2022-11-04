@@ -7,8 +7,9 @@ interface ExerciseData {
   desc: string;
   data: [[string, string]];
 }
-export default async function (user: string) {
-  provide(THEME_KEY, "dark");
+export default async function (user: string, darkMode: boolean) {
+  if (darkMode) provide(THEME_KEY, "dark");
+  else provide(THEME_KEY, "light");
 
   const { pending, data: exercise_data } = await useLazyFetch<ExerciseData[]>(
     "/api/all-exercise-performance/"
