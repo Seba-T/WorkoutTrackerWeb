@@ -1,11 +1,8 @@
 <template>
   <div v-if="pending">I'm loading</div>
   <div v-else class="main">
-    <el-button type="success" plain @click="toggleDark()"
-      >Change the color dear</el-button
-    >
-
     <v-chart
+      ref="chart"
       v-for="option in options"
       :key="option.key"
       class="chart"
@@ -14,27 +11,30 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useDark, useToggle } from "@vueuse/core";
-
+// import { useDark, useToggle } from "@vueuse/core";
+// import { EChartsCoreOption } from "echarts/core";
+// import { THEME_KEY } from "vue-echarts";
+// import * as echarts from "echarts/core";
 import VChart from "vue-echarts";
-import { ElButton } from "element-plus";
 
-const isDark = useDark();
-const toggleDark = useToggle(isDark);
+const chart = ref<HTMLElement>();
 
-const { options, pending } = await useAllExercisePerformance(
-  "current User",
-  isDark.value
-);
+// echarts.dispose(chart.value);
+
+// const isDark = useDark();
+// const toggleDark = useToggle(isDark);
+
+const { options, pending } = await useAllExercisePerformance("current User");
 </script>
 <style scoped>
 .chart {
-  height: 100vh;
+  height: 50vh;
 }
 
 .main {
-  display: inline
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
 

@@ -1,4 +1,6 @@
 import { THEME_KEY } from "vue-echarts";
+// import { useDark } from "@vueuse/core";
+
 function toDate(date: number): string {
   return new Date(date).toISOString().split("T")[0];
 }
@@ -7,9 +9,12 @@ interface ExerciseData {
   desc: string;
   data: [[string, string]];
 }
-export default async function (user: string, darkMode: boolean) {
-  if (darkMode) provide(THEME_KEY, "dark");
-  else provide(THEME_KEY, "light");
+export default async function (user: string) {
+  // const isDark = useDark();
+  // const theme = computed(()=> isDark? "dark": "light");
+  // console.log(theme);
+  provide(THEME_KEY, "dark");
+
 
   const { pending, data: exercise_data } = await useLazyFetch<ExerciseData[]>(
     "/api/all-exercise-performance/"
