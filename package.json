@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "type": "module",
+  "devDependencies": {
+    "nuxt": "3.0.0-rc.12",
+    "unplugin-element-plus": "^0.4.1"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.3",
+    "echarts": "^5.4.0",
+    "element-plus": "^2.2.19",
+    "mongoose": "^6.7.1",
+    "vue-echarts": "^6.2.3"
+  }
+}
