@@ -15,7 +15,6 @@ export default async function (user: string) {
   // console.log(theme);
   provide(THEME_KEY, "dark");
 
-
   const { pending, data: exercise_data } = await useLazyFetch<ExerciseData[]>(
     "/api/all-exercise-performance/"
   );
@@ -29,6 +28,12 @@ export default async function (user: string) {
       options.value.push({
         key: exercise.id,
         graph: {
+          tooltip: {
+            trigger: "axis",
+            axisPointer: { type: "cross" },
+            formatter: (params) =>
+              `${toDate(params[0].data[0])}\n ${params[0].data[1]} kg`,
+          },
           title: {
             text: exercise.desc,
             left: "center",
@@ -39,6 +44,7 @@ export default async function (user: string) {
           },
           yAxis: {
             min: formatted_exercise_data[0][1],
+            axisLabel: { formatter: "{value} kg" },
           },
           series: [
             {
