@@ -1,6 +1,5 @@
 <template>
-  <div v-if="pending">I'm loading</div>
-  <div v-else class="main">
+  <div class="container">
     <v-chart ref="chart" class="chart" :option="option" />
   </div>
 </template>
@@ -17,17 +16,15 @@ const chart = ref<HTMLElement>();
 
 defineProps<{
   option: Ref<ECBasicOption>;
-  pending: Ref<boolean>;
 }>();
 </script>
 <style scoped>
 .chart {
-  height: 50vh;
 }
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.container {
+  width: 100%;
+  height: 70vh;
+  margin: 0;
 }
 </style>
 

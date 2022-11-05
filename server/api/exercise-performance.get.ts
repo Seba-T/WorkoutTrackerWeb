@@ -5,5 +5,5 @@ export default defineEventHandler(async (event) => {
 
   const performances = await mongoUtils.getRecord(query.id);
   console.log(performances);
-  return performances?.map((el) => [el.date, el.value]);
+  return performances;
 });

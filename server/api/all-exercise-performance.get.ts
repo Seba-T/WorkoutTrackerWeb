@@ -3,11 +3,12 @@ export default defineEventHandler(async (event) => {
   const mongoUtils = await nitroApp.hooks.callHook("mongoUtils");
 
   const performances = await mongoUtils.getAllRecords();
-  return performances?.map((el) => {
-    return {
-      id: el._id,
-      desc: el.description,
-      data: el.measurements.map((mes) => [mes.date, mes.value]),
-    };
-  });
+  return performances?.map((el) => ({
+    id: el._id,
+    desc: el.description,
+    measurements: el.measurements.map((mes) => ({
+      value: mes.value,
+      date: new Date(mes.date).getTime().toString(),
+    })),
+  }));
 });
