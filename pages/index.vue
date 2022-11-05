@@ -1,11 +1,4 @@
 <template>
-  <div>
-    <graph></graph>
-  </div>
+  <NuxtLink to="/allData">route to all data</NuxtLink>
 </template>
-<script setup lang="ts">
-
-definePageMeta({
-  layout: false,
-});
-</script>
+<script setup lang="ts"></script>

@@ -1,6 +1,7 @@
 import ElementPlus from "unplugin-element-plus/vite";
 
 export default defineNuxtConfig({
+  pages: true,
   build: {
     transpile: ["element-plus/es", /echarts/, /zrender/],
   },
