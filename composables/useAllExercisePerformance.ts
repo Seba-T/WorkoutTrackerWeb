@@ -1,23 +1,14 @@
 import { ECBasicOption } from "echarts/types/dist/shared";
-import { THEME_KEY } from "vue-echarts";
+import { type } from "os";
 // import { useDark } from "@vueuse/core";
 
-function toDate(date: number): string {
-  return new Date(date).toISOString().split("T")[0];
-}
-
 export default async function (user: string) {
-  // const isDark = useDark();
-  // const theme = computed(()=> isDark? "dark": "light");
-  // console.log(theme);
-  provide(THEME_KEY, "dark");
-
-  const { pending, data: exerciseData } = await useLazyFetch<ExerciseData[]>(
+  const { data: exerciseData, pending } = await useLazyFetch<ExerciseData[]>(
     "/api/all-exercise-performance/"
   );
-  let options;
-  watch(pending, () => {
-    options = useGraphOption(exerciseData);
+  const options = ref<RichOption[]>([]);
+  watch(exerciseData, (newExData) => {
+    if (newExData !== null) options.value.push(...useGraphOption(newExData));
   });
-  return options;
+  return { options, pending };
 }

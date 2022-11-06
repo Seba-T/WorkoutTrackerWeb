@@ -1,6 +1,7 @@
 import ElementPlus from "unplugin-element-plus/vite";
 
 export default defineNuxtConfig({
+  ssr: true,
   pages: true,
   build: {
     transpile: ["element-plus/es", /echarts/, /zrender/, "~~types/types"],
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       compilerOptions: {
-        types: ["element-plus/global", "~~types/types"],
+        types: ["element-plus/global", "~~types/types", "@pinia/nuxt"],
       },
     },
   },

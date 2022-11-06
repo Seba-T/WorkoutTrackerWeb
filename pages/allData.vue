@@ -1,29 +1,15 @@
-<script setup lang="ts">
-const options = await useAllExercisePerformance("current User");
-</script>
+<script setup lang="ts"></script>
 <template>
-  <Suspense>
-    <template #default>
-      <div class="container">
-        <Graph
-          v-for="option in options"
-          :key="option.key"
-          :option="option.graph"
-        ></Graph>
-      </div>
-    </template>
-    <template #fallback>
-      <p>We are loading!!!</p>
-    </template>
-  </Suspense>
+  <div>
+    <Suspense>
+      <template #default>
+        <GraphDisplay></GraphDisplay>
+      </template>
+      <template #fallback>
+        <p>We are loading!!!</p>
+      </template>
+    </Suspense>
+  </div>
 </template>
 
-<style scoped>
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-</style>
+<style scoped></style>

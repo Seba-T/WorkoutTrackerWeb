@@ -5,7 +5,12 @@ interface ExerciseData {
 }
 
 interface Data {
-  date: string;
-  value: string;
+  date: number;
+  value: number;
   toArray(d: Data[]): [number, number][];
+}
+
+interface RichOption {
+  key: string;
+  graph: ECBasicOption;
 }

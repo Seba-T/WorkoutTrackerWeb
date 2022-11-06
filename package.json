@@ -9,7 +9,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "nuxt": "3.0.0-rc.12",
+    "nuxt": "npm:nuxt3@latest",
     "unplugin-element-plus": "^0.4.1"
   },
   "dependencies": {

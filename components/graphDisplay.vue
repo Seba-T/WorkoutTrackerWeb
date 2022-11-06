@@ -1,0 +1,33 @@
+<script setup lang="ts">
+import { THEME_KEY } from "vue-echarts";
+
+provide(THEME_KEY, "dark");
+
+const { options, pending } = await useAllExercisePerformance("current User");
+</script>
+<template>
+  <Suspense>
+    <template #default>
+      <div v-if="!pending" class="container">
+        <Graph
+          v-for="option in options"
+          :key="option.key"
+          :option="option.graph"
+        ></Graph>
+      </div>
+    </template>
+    <template #fallback>
+      <p>We are loading!!!</p>
+    </template>
+  </Suspense>
+</template>
+
+<style scoped>
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>

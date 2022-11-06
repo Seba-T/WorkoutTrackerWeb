@@ -8,11 +8,11 @@ function toDate(date: number | string): string {
   return new Date(date).toISOString().split("T")[0];
 }
 
-export default function (exerciseData: Ref<ExerciseData[]>) {
-  const options = ref<{ key: string; graph: ECBasicOption }[]>([]);
-  for (const exercise of exerciseData.value)
+export default function (exerciseData: ExerciseData[]) {
+  const options = new Array<RichOption>();
+  for (const exercise of exerciseData)
     if (exercise.measurements.length > 1)
-      options.value.push({
+      options.push({
         key: exercise.id,
         graph: {
           tooltip: {
