@@ -18,7 +18,7 @@ export default function (exerciseData: ExerciseData[]) {
           tooltip: {
             trigger: "axis",
             axisPointer: { type: "cross" },
-            formatter: (params) => {
+            formatter: (params: { data: any[] }[]) => {
               return `${toDate(parseFloat(params[0].data[0]))}\n ${
                 params[0].data[1]
               } kg`;

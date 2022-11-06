@@ -3,12 +3,24 @@ import { THEME_KEY } from "vue-echarts";
 
 provide(THEME_KEY, "dark");
 
-const { options, pending } = await useAllExercisePerformance("current User");
+const {
+  data: exerciseData,
+  pending,
+  refresh,
+} = useLazyFetch<ExerciseData[]>("/api/all-exercise-performance/", {
+  server: false,
+  initialCache: false,
+});
+const options = ref<RichOption[]>();
+watch(pending, () => {
+  if (exerciseData.value !== null)
+    options.value = useGraphOption(exerciseData.value);
+});
 </script>
 <template>
   <Suspense>
     <template #default>
-      <div v-if="!pending" class="container">
+      <div class="container">
         <Graph
           v-for="option in options"
           :key="option.key"

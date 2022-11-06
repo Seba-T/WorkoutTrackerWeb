@@ -1,10 +1,21 @@
+import { staticBlock } from "@babel/types";
 import ElementPlus from "unplugin-element-plus/vite";
 
 export default defineNuxtConfig({
   ssr: true,
+  routeRules: {
+    "/allData/**": { static: true },
+  },
   pages: true,
   build: {
-    transpile: ["element-plus/es", /echarts/, /zrender/, "~~types/types"],
+    transpile: [
+      "element-plus/es",
+      /echarts/,
+      /zrender/,
+      "~~types/types",
+      "vue-echarts",
+      "resize-detector",
+    ],
   },
   vite: {
     plugins: [ElementPlus()],

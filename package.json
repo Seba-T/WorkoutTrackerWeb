@@ -9,7 +9,8 @@
   },
   "type": "module",
   "devDependencies": {
-    "nuxt": "npm:nuxt3@latest",
+    "cypress": "^10.11.0",
+    "nuxt": "^3.0.0-rc.1",
     "unplugin-element-plus": "^0.4.1"
   },
   "dependencies": {
@@ -17,6 +18,7 @@
     "echarts": "^5.4.0",
     "element-plus": "^2.2.19",
     "mongoose": "^6.7.1",
+    "vue": "^3.2.41",
     "vue-echarts": "^6.2.3"
   }
 }
