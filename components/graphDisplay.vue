@@ -9,7 +9,6 @@ const {
   refresh,
 } = useLazyFetch<ExerciseData[]>("/api/all-exercise-performance/", {
   server: false,
-  initialCache: false,
 });
 const options = ref<RichOption[]>();
 watch(pending, () => {
@@ -21,11 +20,7 @@ watch(pending, () => {
   <Suspense>
     <template #default>
       <div class="container">
-        <Graph
-          v-for="option in options"
-          :key="option.key"
-          :option="option.graph"
-        ></Graph>
+        <Graph v-for="option in options" :key="option.key" :option="option.graph"></Graph>
       </div>
     </template>
     <template #fallback>

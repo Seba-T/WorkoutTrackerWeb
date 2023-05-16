@@ -1,11 +1,7 @@
-import { staticBlock } from "@babel/types";
 import ElementPlus from "unplugin-element-plus/vite";
 
 export default defineNuxtConfig({
-  ssr: true,
-  routeRules: {
-    "/allData/**": { static: true },
-  },
+  ssr: false,
   pages: true,
   build: {
     transpile: [
@@ -17,17 +13,23 @@ export default defineNuxtConfig({
       "resize-detector",
     ],
   },
+  auth: {
+    isEnabled: true,
+    globalAppMiddleware: true,
+  },
   vite: {
     plugins: [ElementPlus()],
   },
-  modules: [
-    // ...
-    "@pinia/nuxt",
-  ],
+  modules: ["@pinia/nuxt", "@sidebase/nuxt-auth"],
   typescript: {
     tsConfig: {
       compilerOptions: {
-        types: ["element-plus/global", "~~types/types", "@pinia/nuxt"],
+        types: [
+          "element-plus/global",
+          "~~types/types",
+          "@pinia/nuxt",
+          "@sidebase/nuxt-auth/dist/types",
+        ],
       },
     },
   },

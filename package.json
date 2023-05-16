@@ -9,16 +9,19 @@
   },
   "type": "module",
   "devDependencies": {
+    "@sidebase/nuxt-auth": "0.6.0-beta.2",
     "cypress": "^10.11.0",
-    "nuxt": "^3.0.0-rc.1",
+    "nuxt": "^3.4.3",
     "unplugin-element-plus": "^0.4.1"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.4.3",
-    "echarts": "^5.4.0",
-    "element-plus": "^2.2.19",
-    "mongoose": "^6.7.1",
-    "vue": "^3.2.41",
-    "vue-echarts": "^6.2.3"
+    "@pinia/nuxt": "^0.4.10",
+    "echarts": "^5.4.2",
+    "element-plus": "^2.3.4",
+    "mongoose": "^6.11.1",
+    "next-auth": "4.21.1",
+    "vue": "^3.3.2",
+    "vue-echarts": "^6.5.5",
+    "vue-router": "^4.2.0"
   }
 }
