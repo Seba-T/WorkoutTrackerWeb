@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer v-model="drawer" app>
       <v-list>
-        <v-list-item @click="logout">
+        <v-list-item @click="signOut({ callbackUrl: '/' })">
           <v-list-item-icon>
             <v-icon>mdi-logout</v-icon>
           </v-list-item-icon>
@@ -30,7 +30,7 @@
         </NuxtLink>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click="logout">
+      <v-btn icon @click="signOut({ callbackUrl: '/' })">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
@@ -42,7 +42,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useTheme } from 'vuetify';
 
 const { status, signOut } = useAuth();
@@ -50,12 +49,6 @@ const theme = useTheme();
 const drawer = ref(false);
 const darkTheme = ref(theme.global.name.value === 'dark');
 
-const logout = () => {
-  if (status.value === 'authenticated') {
-    signOut();
-    navigateTo('/');
-  }
-};
 
 const toggleTheme = () => {
   const newTheme = darkTheme.value ? 'light' : 'dark';

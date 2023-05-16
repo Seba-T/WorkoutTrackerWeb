@@ -3,7 +3,7 @@
     <div class="container">
       <h1>Welcome to My Gym Progress!</h1>
       <p>Please log in to access your account.</p>
-      <v-btn @click="signIn('github')">Github</v-btn>
+      <v-btn @click="signIn('github', { callbackUrl: '/dashboard' })">Github</v-btn>
     </div>
   </div>
 </template>
@@ -16,6 +16,7 @@ definePageMeta({
     navigateAuthenticatedTo: '/dashboard',
   }
 })
+
 </script>
 
 <style>

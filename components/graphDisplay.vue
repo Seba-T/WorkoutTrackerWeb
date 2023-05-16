@@ -4,20 +4,11 @@ import { useTheme } from 'vuetify'
 
 provide(THEME_KEY, useTheme().global.name.value);
 
-const {
-  data: exerciseData,
-  pending,
-} = useLazyFetch<ExerciseData[]>("/api/all-exercise-performance/", {
-  server: true,
-});
+const exerciseData = await useAllExercisePerformance('test');
 const options = ref<RichOption[]>();
-watch(pending, () => {
-  if (exerciseData.value !== null)
-    options.value = useGraphOption(exerciseData.value);
-  else {
+if (exerciseData !== null)
+  options.value = useGraphOption(exerciseData);
 
-  }
-});
 </script>
 <template>
   <Suspense>
