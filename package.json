@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "start": "nuxt build && node .output/server/index.mjs",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -9,8 +10,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@sidebase/nuxt-auth": "0.6.0-beta.2",
-    "cypress": "^10.11.0",
+    "@sidebase/nuxt-auth": "0.5.0",
     "nuxt": "^3.4.3"
   },
   "dependencies": {

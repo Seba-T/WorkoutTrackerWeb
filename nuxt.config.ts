@@ -1,9 +1,16 @@
 export default defineNuxtConfig({
   ssr: false,
   pages: true,
+  webpack: {
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+        minSize: 1000000,
+      },
+    },
+  },
   build: {
     transpile: [
-      "vuetify",
       /echarts/,
       /zrender/,
       "~~types/types",
@@ -18,10 +25,9 @@ export default defineNuxtConfig({
 
   auth: {
     isEnabled: true,
-    globalAppMiddleware: false,
-    provider: {
-      type: "authjs",
-    },
+    enableGlobalAppMiddleware: false,
+    defaultProvider: "github",
+    origin: process.env.AUTH_ORIGIN,
   },
 
   modules: ["@pinia/nuxt", "@sidebase/nuxt-auth"],
