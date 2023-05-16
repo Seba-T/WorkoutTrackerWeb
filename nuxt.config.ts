@@ -1,11 +1,9 @@
-import ElementPlus from "unplugin-element-plus/vite";
-
 export default defineNuxtConfig({
   ssr: false,
   pages: true,
   build: {
     transpile: [
-      "element-plus/es",
+      "vuetify",
       /echarts/,
       /zrender/,
       "~~types/types",
@@ -13,19 +11,24 @@ export default defineNuxtConfig({
       "resize-detector",
     ],
   },
+  css: [
+    "vuetify/lib/styles/main.sass",
+    "@mdi/font/css/materialdesignicons.min.css",
+  ],
+
   auth: {
     isEnabled: true,
     globalAppMiddleware: true,
+    provider: {
+      type: "authjs",
+    },
   },
-  vite: {
-    plugins: [ElementPlus()],
-  },
+
   modules: ["@pinia/nuxt", "@sidebase/nuxt-auth"],
   typescript: {
     tsConfig: {
       compilerOptions: {
         types: [
-          "element-plus/global",
           "~~types/types",
           "@pinia/nuxt",
           "@sidebase/nuxt-auth/dist/types",

@@ -1,6 +1,7 @@
+import { mongoUtils } from "../utils/mongoose";
+import { authMiddleware } from "../utils/auth-middleware";
 export default defineEventHandler(async (event) => {
-  const nitroApp = useNitroApp();
-  const mongoUtils = await nitroApp.hooks.callHook("mongoUtils");
+  await authMiddleware(event);
   const exerciseList = await mongoUtils.getExerciseList();
   return exerciseList;
 });

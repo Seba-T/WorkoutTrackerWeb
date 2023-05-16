@@ -9,6 +9,7 @@ export default class MongodbUtils {
   private __StrikeRecord: Model<any>;
   constructor(mongoUrl: string) {
     this.__mongoose = new Mongoose();
+    this.__mongoose.set("strictQuery", true);
     const mongoMeasurement = new this.__mongoose.Schema({
       date: Date,
       value: Number,

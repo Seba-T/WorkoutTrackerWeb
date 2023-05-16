@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { THEME_KEY } from "vue-echarts";
+import { THEME_KEY } from 'vue-echarts';
+import { useTheme } from 'vuetify'
 
-provide(THEME_KEY, "dark");
+provide(THEME_KEY, useTheme().global.name.value);
 
 const {
   data: exerciseData,
   pending,
-  refresh,
 } = useLazyFetch<ExerciseData[]>("/api/all-exercise-performance/", {
-  server: false,
+  server: true,
 });
 const options = ref<RichOption[]>();
 watch(pending, () => {
   if (exerciseData.value !== null)
     options.value = useGraphOption(exerciseData.value);
+  else {
+
+  }
 });
 </script>
 <template>

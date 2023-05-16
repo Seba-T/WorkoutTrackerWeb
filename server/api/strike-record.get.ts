@@ -1,8 +1,7 @@
-import MongodbUtils from "~/mongodb/mongoose";
-
+import { mongoUtils } from "../utils/mongoose";
+import { authMiddleware } from "../utils/auth-middleware";
 export default defineEventHandler(async (event) => {
-  const nitroApp = useNitroApp();
-  const mongoUtils: MongodbUtils = await nitroApp.hooks.callHook("mongoUtils");
+  await authMiddleware(event);
   const strikeRecord = await mongoUtils.getStrikeRecord();
   return strikeRecord;
 });

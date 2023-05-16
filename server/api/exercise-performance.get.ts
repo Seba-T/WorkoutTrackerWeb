@@ -1,9 +1,9 @@
+import { mongoUtils } from "../utils/mongoose";
+import { authMiddleware } from "../utils/auth-middleware";
 export default defineEventHandler(async (event) => {
-  const nitroApp = useNitroApp();
-  const mongoUtils = await nitroApp.hooks.callHook("mongoUtils");
+  await authMiddleware(event);
   const query = getQuery(event);
-
-  const performances = await mongoUtils.getRecord(query.id);
+  const performances = await mongoUtils.getSingleRecord(query.id);
   console.log(performances);
   return performances;
 });

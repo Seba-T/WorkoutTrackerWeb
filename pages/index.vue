@@ -3,19 +3,19 @@
     <div class="container">
       <h1>Welcome to My Gym Progress!</h1>
       <p>Please log in to access your account.</p>
-
+      <v-btn @click="signIn('github')">Github</v-btn>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
-// file: e.g ~/pages/login.vue
-const { status, data, signIn, signOut } = useAuth()
-status.value // Session status: `unauthenticated`, `loading`, `authenticated`
-data.value // Session data, e.g., expiration, user.email, ...
-await signIn('github', { callbackUrl: '/protected' })
-await signOut() // Sign out the user
+const { signIn } = useAuth()
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/dashboard',
+  }
+})
 </script>
 
 <style>

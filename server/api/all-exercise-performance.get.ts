@@ -1,7 +1,8 @@
-export default defineEventHandler(async (event) => {
-  const nitroApp = useNitroApp();
-  const mongoUtils = await nitroApp.hooks.callHook("mongoUtils");
+import { authMiddleware } from "../utils/auth-middleware";
+import { mongoUtils } from "../utils/mongoose";
 
+export default defineEventHandler(async (event) => {
+  await authMiddleware(event);
   const performances = await mongoUtils.getAllRecords();
   return performances?.map((el) => ({
     id: el._id,

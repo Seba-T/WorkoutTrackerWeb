@@ -1,4 +1,3 @@
-import { Ref } from "@vue/runtime-core";
 import { ECBasicOption } from "echarts/types/dist/shared";
 
 const toArray: Data["toArray"] = (d: Data[]) =>
