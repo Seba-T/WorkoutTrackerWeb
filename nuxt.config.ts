@@ -30,15 +30,11 @@ export default defineNuxtConfig({
     origin: process.env.AUTH_ORIGIN,
   },
 
-  modules: ["@pinia/nuxt", "@sidebase/nuxt-auth"],
+  modules: ["@sidebase/nuxt-auth"],
   typescript: {
     tsConfig: {
       compilerOptions: {
-        types: [
-          "~~types/types",
-          "@pinia/nuxt",
-          "@sidebase/nuxt-auth/dist/types",
-        ],
+        types: ["~~types/types", "@sidebase/nuxt-auth/dist/types"],
       },
     },
   },
