@@ -23,16 +23,21 @@
         </v-navigation-drawer>
 
         <v-app-bar app>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title class="ml-4">
+            <template v-slot:prepend>
+                <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            </template>
+
+            <v-app-bar-title class="flex-wrapper">
                 <NuxtLink to="/" class="logo-text">
-                    WorkoutTracker
+                    <span class="workout">Workout</span><span class="tracker">Tracker</span>
                 </NuxtLink>
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon @click="signOut({ callbackUrl: '/' })">
-                <v-icon>mdi-logout</v-icon>
-            </v-btn>
+            </v-app-bar-title>
+
+            <template v-slot:append>
+                <v-btn icon @click="signOut({ callbackUrl: '/' })">
+                    <v-icon>mdi-logout</v-icon>
+                </v-btn>
+            </template>
         </v-app-bar>
 
         <v-main>
@@ -59,9 +64,25 @@ const toggleTheme = () => {
 
 <style scoped>
 .logo-text {
-    font-size: 24px;
+    color: inherit;
+    text-decoration: inherit;
+    cursor: inherit;
+    letter-spacing: -0.1ch;
+    font-size: 26px;
+}
+
+.workout {
+    font-weight: 300;
+}
+
+.tracker {
     font-weight: bold;
-    text-decoration: none;
-    color: #333;
+}
+</style>
+
+<style>
+.flex-wrapper div {
+    display: flex;
+    align-items: center;
 }
 </style>
