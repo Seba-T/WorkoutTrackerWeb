@@ -4,6 +4,11 @@ interface ExerciseData {
   measurements: Data[];
 }
 
+interface StrikeRecordData {
+  id: string;
+  strikeDate: string;
+}
+
 interface Data {
   date: number;
   value: number;

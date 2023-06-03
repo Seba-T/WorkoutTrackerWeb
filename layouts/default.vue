@@ -14,9 +14,9 @@
                     <v-list-item-icon>
                         <v-icon>mdi-brightness-6</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-content>
+                    <v-list-item-content class="d-inline-flex align-center">
                         <v-list-item-title>Toggle Theme</v-list-item-title>
-                        <v-switch v-model="darkTheme" color="primary"></v-switch>
+                        <v-switch v-model="darkTheme" color="primary" class="d-inline-block"></v-switch>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>

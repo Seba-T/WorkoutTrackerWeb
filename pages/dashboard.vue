@@ -1,16 +1,16 @@
 <script setup lang="ts">
-definePageMeta({ auth: true })
+definePageMeta({ auth: false })
 </script>
 <template>
-  <div>
-    <Suspense>
-      <template #default>
-        <GraphDisplay></GraphDisplay>
-      </template>
-      <template #fallback>
-        <p>We are loading!!!</p>
-      </template>
-    </Suspense>
-  </div>
+    <div>
+        <Suspense>
+            <template #default>
+                <GraphDisplay></GraphDisplay>
+            </template>
+            <template #fallback>
+                <p>We are loading!!!</p>
+            </template>
+        </Suspense>
+    </div>
 </template>
 
