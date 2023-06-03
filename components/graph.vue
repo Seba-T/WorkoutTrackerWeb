@@ -8,6 +8,7 @@ import { ECBasicOption } from "echarts/types/dist/shared";
 import VChart, { THEME_KEY } from "vue-echarts";
 import { useTheme } from "vuetify/lib/framework.mjs";
 
+
 const currentTheme = useTheme();
 const chart = ref<HTMLElement>();
 const theme = ref<string>(currentTheme.global.name.value);

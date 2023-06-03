@@ -5,11 +5,21 @@ import { type } from "os";
 export async function useAllExercisePerformance(
   user: string
 ): Promise<ExerciseData[]> {
-  const response = await fetch("/api/all-exercise-performance/");
-  return response.json();
+  try {
+    const response = await fetch(`/api/all-exercise-performance/`);
+    if (!response.ok) throw new Error(response.statusText);
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function useStrikeRecord(): Promise<StrikeRecordData[]> {
-  const response = await fetch("/api/strike-record/");
-  return response.json();
+  try {
+    const response = await fetch(`/api/strike-record/`);
+    if (!response.ok) throw new Error(response.statusText);
+    return response.json();
+  } catch (error) {
+    throw error;
+  }
 }

@@ -6,12 +6,20 @@ import { useTheme, useDisplay } from 'vuetify'
 provide(THEME_KEY, useTheme().global.name.value);
 const currentTheme = useTheme();
 const { mobile } = useDisplay();
-const exerciseData = await useAllExercisePerformance('test');
-const strikeRecord = await useStrikeRecord();
+let exerciseData: ExerciseData[] | null = null;
+let strikeRecord: StrikeRecordData[] | null = null;
+
+try {
+    exerciseData = await useAllExercisePerformance('test');
+    strikeRecord = await useStrikeRecord();
+} catch (e) {
+    console.log(e);
+}
+
 const options = ref<RichOption[]>();
 const strikeOption = ref<ECBasicOption>();
 const backgroundColor = ref<string | undefined>();
-if (exerciseData !== null) {
+if (exerciseData !== null && strikeRecord !== null) {
     options.value = useExerciseGraphOptions(exerciseData, backgroundColor, mobile);
     strikeOption.value = useStrikeGraphOption(strikeRecord, backgroundColor, mobile);
 }
@@ -28,22 +36,13 @@ watch(
     }
 );
 
-
 </script>
 <template>
-    <Suspense>
-        <template #default>
-            <div class="container">
-                <Graph v-for="option in options" :key="option.key" :option="option.graph"></Graph>
-                <Graph v-if="strikeOption != undefined" :option="(strikeOption)"></Graph>
-            </div>
-        </template>
-        <template #fallback>
-            <p>We are loading!!!</p>
-        </template>
-    </Suspense>
+    <div class="container">
+        <Graph v-for="option in options" :key="option.key" :option="option.graph"></Graph>
+        <Graph v-if="strikeOption != undefined" :option="(strikeOption)"></Graph>
+    </div>
 </template>
-
 <style scoped>
 .container {
     width: 100%;
